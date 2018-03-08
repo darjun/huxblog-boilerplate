@@ -1,11 +1,12 @@
 ---
 layout:		post
 title:		"Install Jekyll on Windows"
-subtitle: 	"Start a blog trip"
+subtitle: 	"\"Start a blog trip\""
 date:		2018-03-08 11:18:00
 author:		"Darjun"
 header-img:	"img/post-bg-2015.jpg"
-tags: jekyll ruby gem msys2
+tags:
+    - jekyll ruby gem msys2
 ---
 
 # 在Windows上安装Jekyll
@@ -21,13 +22,13 @@ tags: jekyll ruby gem msys2
 在Windows上使用RubyInstaller安装比较方便，去[Ruby官网][1]下载最新版本的RubyInstaller。注意32位和64位版本的区分。
 
 注意：勾选添加到PATH选项，以便在命令行中使用。
-![添加PATH](/blog/img/in-post/windows-jekyll/ruby-install.png)
+![添加PATH](/img/in-post/windows-jekyll/ruby-install.png)
 
 安装完成界面：
-![Ruby安装完成](/blog/img/in-post/windows-jekyll/msys2-install.png)
+![Ruby安装完成](/img/in-post/windows-jekyll/msys2-install.png)
 
 这里需要勾选安装msys2，后面安装gem和jekyll时会用到：
-![安装msys2和development toolchain](/blog/img/in-post/windows-jekyll/ruby-installer2.png)
+![安装msys2和development toolchain](/img/in-post/windows-jekyll/ruby-installer2.png)
 
 #### 2.安装RubyGems
 Windows中下载[ZIP格式][2]比较方便，下载后解压到任意路径。打开Windows的cmd界面，输入命令：
@@ -146,7 +147,7 @@ $ ridk install
 ```
 Incremental build: disabled. Enable with --incremental
       Generating...
-jekyll 3.7.3 | Error:  Permission denied @ rb_sysopen - C:/Users/lidajun/NTUSER.DAT
+jekyll 3.7.3 | Error:  Permission denied @ rb_sysopen - C:/Users/username/NTUSER.DAT
 ```
 
 这是因为jekyll默认使用4000端口，而4000是FoxitProtect（福昕阅读器的一个服务）的默认端口。网上有教程说kill掉FoxitProtect的进程，但是我觉得首先这个比较麻烦，其次重启计算机时FoxitProtect是默认启动的，除非关闭这个服务，这样又可能带来其他问题。所以最简单的办法还是指定端口：
@@ -155,9 +156,11 @@ $ jekyll serve -P 5555
 ```
 
 ### 参考链接
-[^1]: [Github Pages + Jekyll 独立博客一小时快速搭建&上线指南][4]
-[^2]: [RubyInstaller2 issue98][3]
-[^3]: [Install Ruby and the Ruby DevKit][5]
+1.[Github Pages + Jekyll 独立博客一小时快速搭建&上线指南][4]
+
+2.[RubyInstaller2 issue98][3]
+
+3.[Install Ruby and the Ruby DevKit][5]
 
 [1]:https://rubyinstaller.org/downloads/
 [2]:https://rubygems.org/pages/download
