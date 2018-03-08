@@ -18,7 +18,7 @@ tags:
 
 ### 安装环境
 
-#### 1.安装Ruby
+#### 1. 安装Ruby
 在Windows上使用RubyInstaller安装比较方便，去[Ruby官网][1]下载最新版本的RubyInstaller。注意32位和64位版本的区分。
 
 注意：勾选添加到PATH选项，以便在命令行中使用。
@@ -30,26 +30,26 @@ tags:
 这里需要勾选安装msys2，后面安装gem和jekyll时会用到：
 ![安装msys2和development toolchain](/img/in-post/windows-jekyll/ruby-installer2.png)
 
-#### 2.安装RubyGems
+#### 2. 安装RubyGems
 Windows中下载[ZIP格式][2]比较方便，下载后解压到任意路径。打开Windows的cmd界面，输入命令：
 ```
 $ cd {unzip-path} // unzip-path表示解压的路径
 $ ruby setup.rb
 ```
 
-#### 3.安装Jekyll
+#### 3. 安装Jekyll
 在cmd中输入:
 ```
 $ gem install jekyll
 ```
 
-#### 4.安装jekyll-paginate
+#### 4. 安装jekyll-paginate
 在cmd中输入：
 ```
 $ gem install jekyll-paginate
 ```
 
-#### 5.验证安装完成
+#### 5. 验证安装完成
 在cmd中输入：
 ```
 $ jekyll -v
@@ -60,14 +60,14 @@ $ jekyll -v
 jekyll 3.7.3
 ```
 
-#### 6.开启本地实时预览
+#### 6. 开启本地实时预览
 切换到仓库所在目录，在cmd中输入:
 ```
 $ jekyll serve
 ```
 
 ### 遇到问题及解决
-#### 1.gem install jekyll时报错，而且还是乱码！
+#### 1. gem install jekyll时报错，而且还是乱码！
 ```
 C:\User>gem install jekyll
 Temporarily enhancing PATH for MSYS/MINGW...
@@ -141,9 +141,9 @@ Results logged to C:/Ruby25-x64/lib/ruby/gems/2.5.0/extensions/x64-mingw32/2.5.0
 $ ridk install
 ```
 
-安装完成之后再次安装Jekyll就可以了。
+安装完成之后再次安装jekyll和jekyll-paginate就ok了。
 
-#### 2.jekyll serve启动报错
+#### 2. jekyll serve启动报错
 ```
 Incremental build: disabled. Enable with --incremental
       Generating...
