@@ -156,9 +156,9 @@ $ jekyll serve -P 5555
 ```
 
 ### 参考链接
-1.[Github Pages + Jekyll 独立博客一小时快速搭建&上线指南][4]
-2.[RubyInstaller2 issue98][3]
-3.[Install Ruby and the Ruby DevKit][5]
+1. [Github Pages + Jekyll 独立博客一小时快速搭建&上线指南][4]
+2. [RubyInstaller2 issue98][3]
+3. [Install Ruby and the Ruby DevKit][5]
 
 [1]:https://rubyinstaller.org/downloads/
 [2]:https://rubygems.org/pages/download
