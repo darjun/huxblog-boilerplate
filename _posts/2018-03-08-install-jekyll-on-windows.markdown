@@ -2,7 +2,7 @@
 layout:		post
 title:		"Install Jekyll on Windows"
 subtitle: 	"\"Start a blog trip\""
-date:		2018-03-08 11:18:00
+date:		2018-03-07 11:18:00
 author:		"Darjun"
 header-img:	"img/post-bg-2015.jpg"
 tags:
@@ -157,13 +157,11 @@ $ jekyll serve -P 5555
 
 ### 参考链接
 1.[Github Pages + Jekyll 独立博客一小时快速搭建&上线指南][4]
-
 2.[RubyInstaller2 issue98][3]
-
 3.[Install Ruby and the Ruby DevKit][5]
 
 [1]:https://rubyinstaller.org/downloads/
 [2]:https://rubygems.org/pages/download
 [3]:https://github.com/oneclick/rubyinstaller2/issues/98
-[4]: http://playingfingers.com/2016/03/26/build-a-blog/
-[5]: http://jekyll-windows.juthilo.com/1-ruby-and-devkit/
+[4]:http://playingfingers.com/2016/03/26/build-a-blog/
+[5]:http://jekyll-windows.juthilo.com/1-ruby-and-devkit/

@@ -6,7 +6,7 @@ email: leedarjun@gmail.com
 description: ""
 keyword: ""
 url: "http://darjun.github.io"              # your host, for absolute URL
-baseurl: "/blog"         # for example, '/blog' if your blog hosted on 'host/blog'
+# baseurl: "/blog"         # for example, '/blog' if your blog hosted on 'host/blog'
 
 
 
@@ -42,7 +42,10 @@ gems: [jekyll-paginate]
 # document: http://jekyllrb.com/docs/configuration/#kramdown
 markdown: kramdown
 kramdown:
-  input: GFM                            # use Github Flavored Markdown !important
+  # use Github Flavored Markdown !important
+  input: GFM
+  # Disable auto-generated ID's for headings
+  auto_ids: false
 
 
 
@@ -69,7 +72,7 @@ ga_domain: darjun.github.io
 # Sidebar settings
 sidebar: true                           # whether or not using Sidebar.
 sidebar-about-description: "放我继续写代码"
-sidebar-avatar: /blog/img/avatar-darjun.jpg      # use absolute URL, seeing it's used in both `/` and `/about/`
+sidebar-avatar: /img/avatar-darjun.jpg      # use absolute URL, seeing it's used in both `/` and `/about/`
 
 
 # Featured Tags
