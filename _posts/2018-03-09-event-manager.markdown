@@ -1,5 +1,13 @@
-# 用C++11实现事件管理器EventManager
----------
+---
+layout:     post
+title:      "用C++11实现事件管理器"
+subtitle:   "\"观察者模式的应用\""
+date:       2018-03-09 10:58:00
+author:     "Darjun"
+header-img: "img/post-bg-2015.jpg"
+tags:
+    - c++11, 设计模式
+---
 
 ### 背景
 在游戏开发过程中，经常遇到这样一个问题。现在我们有几个功能系统：任务系统，成就系统等。这些系统都需要处理玩家击杀怪物的事件。通常的做法就是在击杀怪物的处理函数中调用这些功能系统的对应接口，代码如下：
@@ -38,7 +46,9 @@ void KillMonster(Player* player, Monster* monster)
 
 这时，就可以很简单地实现`EventManager`类了。使用`C++11`中的`unordered_multimap`来存储这种对应关系。
 
-具体实现代码见[github][1]。
+这里有一种设计模式：[观察者模式][1]
+
+具体实现代码见[github][2]。
 
 ### 使用EventManager
 
@@ -83,7 +93,7 @@ public:
 
 现在只有在添加新的事件时，需要修改对应位置的代码。
 
-详细用法查看[test.cpp][2]文件。
+详细用法查看[test.cpp][3]文件。
 
 ### 实现细节
 
@@ -94,7 +104,9 @@ public:
 
 ### 要求
 
-* 需要支持`C++11`的编译器。编译器支持情况可以看[这里](http://zh.cppreference.com/w/cpp/compiler_support)。
+* 需要支持`C++11`的编译器。编译器支持情况可以看[这里][4]。
 
-[1]: https://github.com/darjun/event-manager
-[2]: https://github.com/darjun/event-manager/blob/master/test.cpp
+[1]: https://zh.wikipedia.org/zh-hans/%E8%A7%82%E5%AF%9F%E8%80%85%E6%A8%A1%E5%BC%8F
+[2]: https://github.com/darjun/event-manager
+[3]: https://github.com/darjun/event-manager/blob/master/test.cpp
+[4]: http://zh.cppreference.com/w/cpp/compiler_support

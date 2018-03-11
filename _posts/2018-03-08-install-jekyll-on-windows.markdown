@@ -1,16 +1,12 @@
 ---
 layout:		post
-title:		"Install Jekyll on Windows"
+title:		"在Windows上安装Jekyll"
 subtitle: 	"\"Start a blog trip\""
 date:		2018-03-07 11:18:00
 author:		"Darjun"
 header-img:	"img/post-bg-2015.jpg"
 tags:
     - jekyll,ruby,gem,msys2
----
-
-# 在Windows上安装Jekyll
-
 ---
 
 ### 背景
