@@ -142,6 +142,20 @@ Windows上`VS Code`默认的Terminal为`PowerShell`。为了使用`msys2`需要�
 
 变量窗口，监视窗口，调用堆栈，一些控制按钮能完成基本的调试。
 
+### 库安装
+
+通过`msys2`的包管理器`pacman`可以很方便的安装一些库。一般先`pacman -Ss`查找，找到自己想要安装的指定版本的库，然后通过`pacman -S`安装。例如下面是如何安装`boost`库的：
+
+输入`pacman -Ss boost`查找：
+![查找boost库](/img/in-post/vs-code-cpp-env/search-boost.png)
+
+选择安装`mingw-w64-x86_64-boost`，输入`pacman -S mingw-w64-x86_64-boost`安装：
+![安装boost库](/img/in-post/vs-code-cpp-env/install-boost.png)
+
+使用:
+![使用boost库](/img/in-post/vs-code-cpp-env/boost-any.png)
+
+
 ### 参考资料
 1. [GCC & clang on windows with Visual Studio Code + bash terminal + debugging][2]
 2. [CppCon 2017: Rong Lu “C++ Development with Visual Studio Code”][3]
@@ -149,5 +163,5 @@ Windows上`VS Code`默认的Terminal为`PowerShell`。为了使用`msys2`需要�
 
 [1]: https://code.visualstudio.com/Download
 [2]: https://www.youtube.com/watch?v=TLh--v8OxHE
-[3]: https://www.youtube.com/watch?v=rFdJ68WbkdQ&t=2202s
+[3]: https://www.youtube.com/watch?v=rFdJ68WbkdQ
 [4]: https://www.msys2.org/
