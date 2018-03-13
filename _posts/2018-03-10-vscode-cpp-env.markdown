@@ -138,9 +138,10 @@ Windows上`VS Code`默认的Terminal为`PowerShell`。为了使用`msys2`需要�
 ![mingw配置](/img/in-post/vs-code-cpp-env/mingw-config.png)
 
 然后选择`调试->添加配置`修改内容如下：
-![调试配置](/img/in-post/vs-code-cpp-env/debug.png)
+![调试配置](/img/in-post/vs-code-cpp-env/debug-config.png)
 
 变量窗口，监视窗口，调用堆栈，一些控制按钮能完成基本的调试。
+![调试](/img/in-post/vs-code-cpp-env/debug.png)
 
 ### 库安装
 
