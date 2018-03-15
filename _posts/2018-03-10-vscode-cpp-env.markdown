@@ -6,7 +6,7 @@ date:       2018-03-10 11:00:00
 author:     "Darjun"
 header-img: "img/post-bg-2015.jpg"
 tags:
-    - vs code, msys2, gcc, clang
+    - tools
 ---
 
 ### 背景

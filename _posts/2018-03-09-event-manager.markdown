@@ -6,7 +6,7 @@ date:       2018-03-09 10:58:00
 author:     "Darjun"
 header-img: "img/post-bg-2015.jpg"
 tags:
-    - c++11, 设计模式
+    - 游戏开发
 ---
 
 ### 背景

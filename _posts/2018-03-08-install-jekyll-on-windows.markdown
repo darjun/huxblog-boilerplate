@@ -6,7 +6,7 @@ date:		2018-03-07 11:18:00
 author:		"Darjun"
 header-img:	"img/post-bg-2015.jpg"
 tags:
-    - jekyll,ruby,gem,msys2
+    - tools
 ---
 
 ### 背景
