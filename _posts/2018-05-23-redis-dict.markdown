@@ -280,7 +280,7 @@ dictEntry *dictGetRandomKey(dict *d) {
 }
 ```
 
-** 注意：
+**注意**：
 这个函数先随机槽，再随机链表元素，并不是等概率的。
 
 #### <span id="设置节点">设置节点</span>
