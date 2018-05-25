@@ -13,23 +13,23 @@ tags:
 + [1.概述](#概述)
 + [2.实现结构](#实现结构)
 + [3.dict操作](#dict操作)
-    + [1.创建dict](#创建dict)
-    + [2.添加节点](#添加节点)
-    + [3.查找节点](#查找节点)
-    + [4.随机一个节点](#随机一个节点)
-    + [5.设置节点](#设置节点)
-    + [6.删除节点](#删除节点)
-    + [7.销毁dict](#销毁dict)
-    + [8.清空dict](#清空dict)
-    + [9.遍历dict](#遍历dict)
-    + [10.rehash](#rehash)
+    + [3.1.创建dict](#创建dict)
+    + [3.2.添加节点](#添加节点)
+    + [3.3.查找节点](#查找节点)
+    + [3.4.随机一个节点](#随机一个节点)
+    + [3.5.设置节点](#设置节点)
+    + [3.6.删除节点](#删除节点)
+    + [3.7.销毁dict](#销毁dict)
+    + [3.8.清空dict](#清空dict)
+    + [3.9.遍历dict](#遍历dict)
+    + [3.10.rehash](#rehash)
 + [4.hash算法](#hash算法)
 + [5.dictType示例](#dictType示例)
 
-### <span id="概述">概述</span>
+### <span id="概述">1.概述</span>
 `dict`是Redis中最重要的数据结构之一。很多结构都使用`dict`作为基础数据结构，例如`hash`类型，命令表，SHA1到Lua脚本的映射等。
 
-### <span id="实现结构">实现结构</span>
+### <span id="实现结构">2.实现结构</span>
 `dictEntry`表示为一个哈希表节点。`key`使用一个`void *`类型来表示，`value`由几个常见类型的`union`来表示。由于使用链地址法，所以`dictEntry`中存放了下一个节点的地址`next`。
 ```
 typedef struct dictEntry {
@@ -111,8 +111,8 @@ typedef struct dictIterator {
 
 定义文件：`dict.h`和`dict.c`。
 
-### <span id="dict操作">dict操作</span>
-#### <span id="创建dict">创建`dict`</span>
+### <span id="dict操作">3.dict操作</span>
+#### <span id="创建dict">3.1.创建`dict`</span>
 调用`dictCreate`先分配空间。
 ```
 // 参数type自定义对哈希表节点的key和value进行的操作
@@ -154,7 +154,7 @@ static void _dictReset(dictht *ht)
 }
 ```
 
-#### <span id="添加节点">添加节点</span>
+#### <span id="添加节点">3.2.添加节点</span>
 调用`dictAdd`添加节点。
 ```
 int dictAdd(dict *d, void *key, void *val)
@@ -200,7 +200,7 @@ dictEntry *dictAddRaw(dict *d, void *key)
 }
 ```
 
-#### <span id="查找节点">查找节点</span>
+#### <span id="查找节点">3.3.查找节点</span>
 查找由函数`dictFind`负责，该函数实现也很简单。先计算`key`的hash值，找到对应的槽，依次比较。但是由于存在rehash状态，所以需要查找两个`dictht`。
 ```
 dictEntry *dictFind(dict *d, const void *key)
@@ -240,7 +240,7 @@ void *dictFetchValue(dict *d, const void *key) {
 }
 ```
 
-#### <span id="随机一个节点">随机一个节点</span>
+#### <span id="随机一个节点">3.4.随机一个节点</span>
 `dictGetRandomKey`随机返回一个`dict`中的`entry`。
 
 ```
@@ -283,7 +283,7 @@ dictEntry *dictGetRandomKey(dict *d) {
 **注意**：
 这个函数先随机槽，再随机链表元素，并不是等概率的。
 
-#### <span id="设置节点">设置节点</span>
+#### <span id="设置节点">3.5.设置节点</span>
 可以通过调用`dictReplace`设置一个key对应的value值。如果key不存在，则新增这个键值对。返回1表示新增，返回0表示更新值。
 ```
 int dictReplace(dict *d, void *key, void *val) {
@@ -306,7 +306,7 @@ int dictReplace(dict *d, void *key, void *val) {
 * 如果key存在，返回key对应的entry
 * 反之，插入这个key，然后返回新插入的entry
 
-#### <span id="删除节点">删除节点</span>
+#### <span id="删除节点">3.6.删除节点</span>
 节点删除通过`dictGenericDelete`完成，可以通过`nofree`指定是否销毁键和值。
 ```
 static int dictGenericDelete(dict *d, const void *key, int nofree)
@@ -355,7 +355,7 @@ static int dictGenericDelete(dict *d, const void *key, int nofree)
 }
 ```
 
-#### <span id="销毁dict">销毁`dict`</span>
+#### <span id="销毁dict">3.7.销毁`dict`</span>
 可以通过调用`dictRelease`删除一个`dict`。
 ```
 void dictRelease(dict *d)
@@ -395,7 +395,7 @@ int _dictClear(dict *d, dictht *ht, void (callback)(void *)) {
 }
 ```
 
-#### <span id="清空dict">清空`dict`</span>
+#### <span id="清空dict">3.8.清空`dict`</span>
 可以调用`dictEmpty`清空一个`dict`，但不销毁。
 ```
 void dictEmpty(dict *d, void(callback)(void*)) {
@@ -407,7 +407,7 @@ void dictEmpty(dict *d, void(callback)(void*)) {
 }
 ```
 
-#### <span id="遍历dict">遍历`dict`</span>
+#### <span id="遍历dict">3.9.遍历`dict`</span>
 为了便于`dict`的遍历，Redis提供了`dict`的迭代器`dictIterator`。
 
 迭代器分为安全的和非安全的两种，分别通过`dictGetIterator`和`dictGetSafeIterator`获取。
@@ -497,7 +497,7 @@ void dictReleaseIterator(dictIterator *iter) {
 }
 ```
 
-#### <span id="rehash">rehash</span>
+#### <span id="rehash">3.10.rehash</span>
 在上面添加key时，会调用`_dictKeyIndex`为key分配一个槽。`_dictKeyIndex`会调用`_dictExpandIfNeeded`，按需扩容。
 
 ```
@@ -627,7 +627,7 @@ int dictResize(dict *d) {
 }
 ```
 
-### <span id="hash算法">hash算法</span>
+### <span id="hash算法">4.hash算法</span>
 
 * `dictIntHashFunction`计算`unsigned int`的hash值（[Thomas Wang的32位混合算法][1]）。
 
@@ -635,7 +635,7 @@ int dictResize(dict *d) {
 
 * `dictGenCaseHashFunction`计算`buf`和`len`表示的缓冲区的hash值（基于[djb算法][3]）。
 
-### <span id="dictType示例">dictType示例</span>
+### <span id="dictType示例">5.dictType示例</span>
 `dict.c`最后列举了一个`string copy`的`dictType`示例。
 ```
 // 计算hash值

@@ -21,8 +21,10 @@ Redis源码质量非常优秀，值得细细品读。此次基于Redis-2.8.19，
 1. [字符串][1]
 2. [list][2]
 3. [dict][3]
+4. [skiplsit][4]
 
 
 [1]: /2018/05/22/redis-sds/
 [2]: /2018/05/23/redis-list/
 [3]: /2018/05/23/redis-dict/
+[4]: /2018/05/23/redis-skiplist/
