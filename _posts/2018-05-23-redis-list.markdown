@@ -9,10 +9,24 @@ tags:
     - redis源码阅读
 ---
 
-### 概述
-list是一个很常用的数据结构。Redis中实现的list基于双向链表。该实现简单，高效。list是实现其他数据结构的基础结构。
+## 目录：
++ [1.概述](#概述)
++ [2.实现](#实现)
++ [3.操作](#操作)
+    - [3.1.创建](#创建)
+    - [3.2.销毁](#销毁)
+    - [3.3.插入节点](#插入节点)
+    - [3.4.删除节点](#删除节点)
+    - [3.5.遍历](#遍历)
+    - [3.6.其他操作](#其他操作)
++ [4.总结](#总结)
 
-### 实现结构
+### <span id="概述">1.概述</span>
+`list`是一个很常用的数据结构。Redis中实现的`list`基于双向链表。该实现简单，高效。`list`是实现其他数据结构的基础结构。
+
+### <span id="实现">2.实现</span>
+所在文件：`adlist.h`和`adlist.c`。
+
 list数据结构如下。
 ```
 // list节点结构
@@ -56,85 +70,9 @@ typedef struct listIter {
 } listIter;
 ```
 
-定义文件：`adlist.h`和`adlist.c`。
-
-### list操作
-#### 实现为宏的操作
-##### `listLength`
-获取list长度。
-```
-#define listLength(l) ((l)->len)
-```
-
-##### `listFirst`
-获取list头部指针。
-```
-#define listFirst(l) ((l)->head)
-```
-
-##### `listLast`
-获取list尾部指针。
-```
-#define listLast(l) ((l)->tail)
-```
-
-##### `listPrevNode`
-获取前一个节点指针。
-```
-#define listPrevNode(n) ((n)->prev)
-```
-
-##### `listNextNode`
-获取后一个节点指针。
-```
-#define listNextNode(n) ((n)->next)
-```
-
-##### `listNodeValue`
-获取结点值。
-```
-#define listNodeValue(n) ((n)->value)
-```
-
-##### `listSetDupMethod`
-设置复制操作函数。用于`listDup`中。
-```
-#define listSetDupMethod(l,m) ((l)->dup = (m))
-```
-
-##### `listSetFreeMethod`
-设置释放操作函数。
-```
-#define listSetFreeMethod(l,m) ((l)->free = (m))
-```
-
-##### `listSetMatchMethod`
-设置匹配比较操作函数。
-```
-#define listSetMatchMethod(l,m) ((l)->match = (m))
-```
-
-##### `listGetDupMethod`
-获取复制操作函数。
-```
-#define listGetDupMethod(l) ((l)->dup)
-```
-
-##### `listGetFree`
-获取释放操作函数。
-```
-#define listGetFree(l) ((l)->free)
-```
-
-##### `listGetMatchMethod`
-获取匹配比较操作函数。
-```
-#define listGetMatchMethod(l) ((l)->match)
-```
-
-#### 操作函数
-##### `listCreate`
-创建一个新的list。出现错误时，返回NULL。
+### <span id="操作">3.操作</span>
+#### <span id="创建">3.1.创建</span>
+`listCreate`创建一个新的list。出现错误时，返回NULL。
 ```
 list *listCreate(void)
 {
@@ -153,8 +91,8 @@ list *listCreate(void)
 }
 ```
 
-##### `listRelease`
-释放这个list。
+#### <span id="销毁">3.2.销毁</span>
+`listRelease`销毁这个list。
 ```
 void listRelease(list *list)
 {
@@ -173,8 +111,11 @@ void listRelease(list *list)
 }
 ```
 
-##### `listAddNodeHead`
-在头部插入一个节点。
+#### <span id="插入节点">3.3.插入节点</span>
+通过下面几个函数实现在不同的位置插入新节点：
+
+##### 在头部插入
+`listAddNodeHead`在头部插入一个节点。
 ```
 list *listAddNodeHead(list *list, void *value)
 {
@@ -199,8 +140,8 @@ list *listAddNodeHead(list *list, void *value)
 }
 ```
 
-##### `listAddNodeTail`
-在尾部插入一个节点。
+##### 在尾部插入
+`listAddNodeTail`在尾部插入一个节点。
 ```
 list *listAddNodeTail(list *list, void *value)
 {
@@ -224,8 +165,8 @@ list *listAddNodeTail(list *list, void *value)
 }
 ```
 
-##### `listInsertNode`
-在指定节点处插入节点。`after`标志指示在节点前还是节点后插入。
+##### 在指定节点前后插入
+`listInsertNode`在指定节点处插入节点。`after`标志指示在节点前还是节点后插入。
 ```
 list *listInsertNode(list *list, listNode *old_node, void *value, int after) {
     listNode *node;
@@ -262,8 +203,8 @@ list *listInsertNode(list *list, listNode *old_node, void *value, int after) {
 }
 ```
 
-##### `listDelNode`
-删除指定节点。
+### <span id="删除节点">3.4.删除节点</span>
+`listDelNode`删除指定节点。
 ```
 void listDelNode(list *list, listNode *node)
 {
@@ -288,8 +229,10 @@ void listDelNode(list *list, listNode *node)
 }
 ```
 
-##### `listGetIterator`
-获取一个list的迭代器，方向由`direction`指定。
+### <span id="遍历">3.5.遍历</span>
+`list`提供遍历器，可以实现顺序或逆序遍历
+#### 获取迭代器
+`listGetIterator`获取一个list的迭代器，方向由`direction`指定。
 ```
 listIter *listGetIterator(list *list, int direction)
 {
@@ -307,34 +250,15 @@ listIter *listGetIterator(list *list, int direction)
 }
 ```
 
-##### `listReleaseIterator`
-释放迭代器。
+`listGetIterator`获取的迭代器需要调用`listReleaseIterator`释放。
 ```
 void listReleaseIterator(listIter *iter) {
     zfree(iter);
 }
 ```
 
-##### `listRewind`
-重置迭代器，可以重新顺序遍历。
-```
-void listRewind(list *list, listIter *li) {
-    li->next = list->head;
-    li->direction = AL_START_HEAD;
-}
-```
-
-##### `listRewindTail`
-重置迭代器，可以重新逆序遍历。
-```
-void listRewindTail(list *list, listIter *li) {
-    li->next = list->tail;
-    li->direction = AL_START_TAIL;
-}
-```
-
-##### `listNext`
-返回迭代器的值，并将其后移一位指向下一个值。
+#### 遍历
+`listNext`返回迭代器的当前值，并将其后移一位指向下一个值。
 ```
 listNode *listNext(listIter *iter)
 {
@@ -352,8 +276,28 @@ listNode *listNext(listIter *iter)
 }
 ```
 
-##### `listDup`
-复制当前list，返回一个新的list。
+#### 重置迭代器
+遍历结束之后，如果需要重新遍历。可以重置迭代器，不用创新创建。重置时可以选择从头部还是尾部开始遍历。
+
+`listRewind`重置迭代器，可以重新顺序遍历。
+```
+void listRewind(list *list, listIter *li) {
+    li->next = list->head;
+    li->direction = AL_START_HEAD;
+}
+```
+
+`listRewindTail`重置迭代器，可以重新逆序遍历。
+```
+void listRewindTail(list *list, listIter *li) {
+    li->next = list->tail;
+    li->direction = AL_START_TAIL;
+}
+```
+
+### <span id="其他操作">3.6.其他操作</span>
+#### 复制`list`
+`listDup`复制当前`list`，返回一个新的`list`。
 ```
 list *listDup(list *orig)
 {
@@ -394,8 +338,8 @@ list *listDup(list *orig)
 }
 ```
 
-##### `listSearchKey`
-查找指定的`key`。
+#### 查找指定`key`
+`listSearchKey`遍历`list`查找指定的`key`。
 ```
 listNode *listSearchKey(list *list, void *key)
 {
@@ -423,8 +367,8 @@ listNode *listSearchKey(list *list, void *key)
 }
 ```
 
-##### `listIndex`
-返回指定索引处的节点，索引为负时从尾部计算。索引0表示第一个节点，1表示第二个节点，索引-1表示倒数第一个节点等等。
+#### 返回指定索引处节点
+`listIndex`返回指定索引处的节点，索引为负时从尾部计算。索引0表示第一个节点，1表示第二个节点，索引-1表示倒数第一个节点等等。
 ```
 listNode *listIndex(list *list, long index) {
     listNode *n;
@@ -442,8 +386,8 @@ listNode *listIndex(list *list, long index) {
 }
 ```
 
-##### `listRotate`
-将最后一个节点移到头部。
+#### 将最后一个节点移到头部
+`listRotate`将最后一个节点移到头部。
 ```
 void listRotate(list *list) {
     listNode *tail = list->tail;
@@ -459,3 +403,6 @@ void listRotate(list *list) {
     list->head = tail;
 }
 ```
+
+### <span id="总结">4.总结</span>
+C语言缺乏基本的数据结构，在用到指定数据结构时，要么使用第三方实现，要么自己实现。
