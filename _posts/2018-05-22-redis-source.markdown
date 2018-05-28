@@ -16,6 +16,8 @@ Redis源码质量非常优秀，值得细细品读。此次基于Redis-2.8.19，
 
 ### 阅读顺序
 
+阅读基本按照黄健宏建议的[顺序][0]。
+
 首先是基本的数据结构实现：
 
 1. [字符串][1]
@@ -23,7 +25,7 @@ Redis源码质量非常优秀，值得细细品读。此次基于Redis-2.8.19，
 3. [dict][3]
 4. [skiplsit][4]
 
-
+[0]: https://github.com/huangz1990/blog/blob/master/diary/2014/how-to-read-redis-source-code.rst
 [1]: /2018/05/22/redis-sds/
 [2]: /2018/05/23/redis-list/
 [3]: /2018/05/23/redis-dict/
