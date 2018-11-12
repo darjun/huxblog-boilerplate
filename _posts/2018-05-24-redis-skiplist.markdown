@@ -27,7 +27,7 @@ tags:
     - [3.6.查询](#查询)
         + [3.6.1.查找score和obj的rank](#查找score和obj的rank)
         + [3.6.2.查找某个rank的节点](#查找某个rank的节点)
-+ [4.总结]
++ [4.总结](#总结)
 
 ### <span id="概述">概述</span>
 跳跃表是`zset`（有序集合）的基础数据结构。跳跃表可以高效地保持元素有序，并且实现相比平衡树简单、直观。Redis的跳跃表是基于William Pugh在[《Skip lists: a probabilistic alternative to balanced trees》][1]中描述的算法实现的。做了以下几点改动：
