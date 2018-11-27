@@ -1,6 +1,6 @@
 ---
 layout:     post
-title:      "深入理解CallStack&EventLoop"
+title:      "深入理解Javascript之CallStack&EventLoop"
 subtitle:   "\"Javascript in depth\""
 date:       2018-11-23 20:57:00 
 author:     "Darjun"

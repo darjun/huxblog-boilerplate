@@ -1,6 +1,6 @@
 ---
 layout:     post
-title:      "深入理解Promise"
+title:      "深入理解Javascript之Promise"
 subtitle:   "\"Javascript in depth\""
 date:       2018-11-08 23:44:00 
 author:     "Darjun"
