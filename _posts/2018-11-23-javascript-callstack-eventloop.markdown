@@ -656,9 +656,8 @@ EventLoop检测到call stack中没有正在执行的任务，同时microtask队�
 3. [Tasks, microtasks, queues and schedules][6]
 4. [Understanding the JavaScript call stack][7]
 
-[个人主页][8]
-[简书][9]
-[掘金][10]
+关于我：
+[个人主页][8] [简书][9] [掘金][10]
 
 [1]: https://darjun.github.io/2018/11/08/javascript-promise-intro
 [2]: https://twitter.com/philip_roberts
