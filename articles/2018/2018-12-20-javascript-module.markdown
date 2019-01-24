@@ -1,4 +1,4 @@
-### 什么是模块<
+### 什么是模块
 
 模块（module）是什么呢？
 模块是为了软件封装，复用。当今开源运动盛行，我们可以很方便地使用别人编写好的模块，而不用自己从头开始编写。在程序设计中，我们一直强调避免重复造轮子（Don't Repeat Yourself，DRY）。
@@ -382,10 +382,10 @@ $ node --experimental-modules main.mjs
 
 ### 5.参考链接
 
-1. [Javascript模块化编程（一） - 阮一峰](http://www.ruanyifeng.com/blog/2012/10/javascript_module.html)
-2. [Javascript模块化编程（二） - 阮一峰](http://www.ruanyifeng.com/blog/2012/10/asynchronous_module_definition.html)
-3. [Javascript模块化编程（三） - 阮一峰](http://www.ruanyifeng.com/blog/2012/11/require_js.html)
-4. [ES6 Module - 阮一峰](http://es6.ruanyifeng.com/#docs/module)
+1. [Javascript模块化编程（一）](http://www.ruanyifeng.com/blog/2012/10/javascript_module.html)
+2. [Javascript模块化编程（二）](http://www.ruanyifeng.com/blog/2012/10/asynchronous_module_definition.html)
+3. [Javascript模块化编程（三）](http://www.ruanyifeng.com/blog/2012/11/require_js.html)
+4. [ES6 Module](http://es6.ruanyifeng.com/#docs/module)
 
 关于我：
 [个人主页](https://darjun.github.io) [简书](https://www.jianshu.com/u/0aca4aa367c8) [掘金](https://juejin.im/user/5be15200e51d4505466ce2f4)
